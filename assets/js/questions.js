@@ -1,4 +1,4 @@
-const questions = [
+const questionsArr = [
     {
         question: 'Question 1',
         answer: {
@@ -6,7 +6,8 @@ const questions = [
             2: 'ans2',
             3: 'ans3',
             4: "ans4"
-        }
+        },
+        correct: 2
     },
     {
         question: 'Question 2',
@@ -15,7 +16,8 @@ const questions = [
             2: 'ans2',
             3: 'ans3',
             4: "ans4"
-        }
+        },
+        correct: 2
     },
     {
         question: 'Question 3',
@@ -24,7 +26,8 @@ const questions = [
             2: 'ans2',
             3: 'ans3',
             4: "ans4"
-        }
+        },
+        correct: 2
     },
     {
         question: 'Question 4',
@@ -33,7 +36,8 @@ const questions = [
             2: 'ans2',
             3: 'ans3',
             4: "ans4"
-        }
+        },
+        correct: 2
     }
     
 ]
