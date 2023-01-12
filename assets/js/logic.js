@@ -9,6 +9,9 @@ const timeIndicator = document.querySelector('#time');
 var incorrectAns = new Audio('/assets/sfx/incorrect.wav');
 var correctAns = new Audio('/assets/sfx/correct.wav');
 var timeRemaining = 0;
+var questionIndex = 0
+//randomiseQuestions;
+const questionShuff = shuffle(questionsArr);
 
 //function to set base state
 function int(){
@@ -34,10 +37,8 @@ function timer(){
 
     },1000);
 
-    //randomise questions
-    let qShuff = shuffle(questionsArr);
     //start quiz
-    runQuiz(0, qShuff);
+    runQuiz(questionIndex);
 }
 //function for wrong answer
 function reduceTime(){
@@ -48,11 +49,26 @@ function reduceTime(){
         timeRemaining = 1;
         timeIndicator.textContent = timeRemaining;
     }
+    next();
 
 }
+//function for correct answer
+function next(){
+    if(questionIndex < qArrLength && timeRemaining > 0){
+        runQuiz(questionIndex);
+    } else {
+        if(timeRemaining > 0){
+            clearInterval();
+            timeRemaining = 0;
+            timeIndicator.textContent = timeRemaining;
+        }
+        endGame();
+    }
+}
 
-function runQuiz(q, questionShuff){
+function runQuiz(q){
 
+    choices.innerHTML = '';
     questionTitle.innerHTML = questionShuff[q].question;
     let qLength = questionShuff.length
     let qChoices = questionShuff[q].choices;
@@ -74,13 +90,11 @@ function runQuiz(q, questionShuff){
        choices.appendChild(btn);
 
     }
+    questionIndex ++;
     
 
 }
-//function to get next question
-function next(){
 
-}
 //function to end the game
 function endGame(){
 
@@ -97,6 +111,7 @@ function buttonHandler(button){
         ///check if correct answer
         if(button.dataset.test == 1){
             correctAns.play();
+            next();
         } else {
             incorrectAns.play();
             reduceTime();

@@ -41,3 +41,4 @@ const questionsArr = [
     },
     
 ]
+const qArrLength = questionsArr.length;
