@@ -18,7 +18,7 @@ if (data != null) {
 } 
 
 
-//get wrapper that will contain all buttons
+//get button on page
 const button = document.querySelector('#clear');
 //and add event listener
 button.addEventListener('click', function () {
