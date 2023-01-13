@@ -123,14 +123,16 @@ function showFeedback(ans) {
 
 //function for wrong answer
 function reduceTime() {
-    //if there are seconds to remove (+1 second to all for lag)
-    if (timeRemaining > 11) {
+    //if there are seconds to remove
+    if (timeRemaining > 10) {
         timeRemaining -= 10;
         timeIndicator.textContent = timeRemaining;
-        //if not set timer to 1 second(to account for lag) so the game ends
+        //if not set timer to 1 second so the game ends
     } else {
-        timeRemaining = 1;
+        timeRemaining = 0;
         timeIndicator.textContent = timeRemaining;
+        clearInterval(intervalID);
+        endGame();
     }
 
 }
