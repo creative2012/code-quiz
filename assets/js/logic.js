@@ -13,7 +13,6 @@ const finalScore = document.querySelector('#final-score');
 //randomiseQuestions;
 const questionShuff = shuffle(questionsArr);
 var intervalID = null;
-
 var timeRemaining = 75;
 var questionIndex = 0;
 //object format for saving player score
