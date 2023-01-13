@@ -63,14 +63,8 @@ function runQuiz() {
         //set the text and class
         btn.innerHTML = choiceLetters[i]+qChoices[i];
         btn.classList.add('choice');
-        //check if this is the correct answer
+        //add data atribute for answer checking
         btn.dataset.test = i+1;
-        // if (questionShuff[q].correct == i + 1) {
-        //     //if so add a data attribute with 1 for true or if not 0 for false
-        //     btn.dataset.test = 1;
-        // } else {
-        //     btn.dataset.test = 0;
-        // }
         //add to the page.
         choices.appendChild(btn);
 
