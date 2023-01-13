@@ -1,42 +1,42 @@
 const questionsArr = [
     {
-        question: 'Question 1',
+        question: 'Javascript is an _______ language?',
         choices: [
-            'ans1',
-            'ans2',
-            'ans3',
-            "ans4"
+            'Object-Oriented',
+            'Object-Based',
+            'Procedural',
+            "None of the above"
         ],
         //human readable correct choice - actuall would be (correct -1) 
-        correct: 2
+        correct: 1
     },
     {
-        question: 'Question 2',
+        question: 'Which of the following keywords is used to define a variable in Javascript?',
         choices: [
-            'ans1',
-            'ans2',
-            'ans3',
-            "ans4"
+            'var',
+            'let',
+            'Both A and B',
+            "None of the above"
         ],
-        correct: 2
+        correct: 3
     },
     {
-        question: 'Question 3',
+        question: 'Which of the following methods is used to access HTML elements using Javascript?',
         choices: [
-            'ans1',
-            'ans2',
-            'ans3',
-            "ans4"
+            'getElementbyId()',
+            'GetElementsByClassName()',
+            'Both A and B',
+            "None of the above"
         ],
-        correct: 2
+        correct: 3
     },
     {
-        question: 'Question 4',
+        question: 'pon encountering empty statements, what does the Javascript Interpreter do?',
         choices: [
-            'ans1',
-            'ans2',
-            'ans3',
-            "ans4"
+            'Thorws an erro',
+            'Ignores the statements',
+            'Gives a warning',
+            "None of the above"
         ],
         correct: 2
     },
