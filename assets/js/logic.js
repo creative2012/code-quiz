@@ -137,8 +137,8 @@ function rememberScores() {
     scoreSave.score = timeRemaining;
     var toStorage = [];
     //check if old scores in local storage
-    if (JSON.parse(localStorage.getItem('highScores')) != null) {
-        let data = JSON.parse(localStorage.getItem('highScores'));
+    let data = JSON.parse(localStorage.getItem('highScores'));
+    if (data != null) {
         data.forEach(function (item) {
             toStorage.push(item);
         });
