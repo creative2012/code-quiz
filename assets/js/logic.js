@@ -23,6 +23,19 @@ var scoreSave = {
     score: 0
 }
 
+//function to check answer
+function checkAns(test){
+    let check = questionShuff[questionIndex-1].correct;
+    if(test == check.toString()){
+        correctAns.play();
+        showFeedback(true);
+        next();
+    } else {
+        incorrectAns.play();
+        showFeedback(false);
+        reduceTime();
+    }
+}
 //function to set base state
 function int() {
     startScreen.classList.add('hide');
@@ -63,12 +76,13 @@ function runQuiz(q) {
         btn.innerHTML = choiceLetters[i]+qChoices[i];
         btn.classList.add('choice');
         //check if this is the correct answer
-        if (questionShuff[q].correct == i + 1) {
-            //if so add a data attribute with 1 for true or if not 0 for false
-            btn.dataset.test = 1;
-        } else {
-            btn.dataset.test = 0;
-        }
+        btn.dataset.test = i+1;
+        // if (questionShuff[q].correct == i + 1) {
+        //     //if so add a data attribute with 1 for true or if not 0 for false
+        //     btn.dataset.test = 1;
+        // } else {
+        //     btn.dataset.test = 0;
+        // }
         //add to the page.
         choices.appendChild(btn);
 
@@ -128,15 +142,7 @@ function buttonHandler(button) {
     }
     if (button.classList.contains('choice')) {
         ///check if correct answer
-        if (button.dataset.test == 1) {
-            correctAns.play();
-            showFeedback(true);
-            next();
-        } else {
-            incorrectAns.play();
-            showFeedback(false);
-            reduceTime();
-        }
+        checkAns(button.dataset.test);
     }
     //save score
     if (button.id == "submit") {
