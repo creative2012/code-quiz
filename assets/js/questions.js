@@ -33,7 +33,7 @@ const questionsArr = [
     {
         question: 'Upon encountering empty statements, what does the Javascript Interpreter do?',
         choices: [
-            'Thorws an error',
+            'Throwss an error',
             'Ignores the statements',
             'Gives a warning',
             "None of the above"

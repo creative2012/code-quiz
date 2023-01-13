@@ -14,6 +14,7 @@ const feedBack = document.querySelector('#feedback');
 //randomiseQuestions;
 const questionShuff = shuffle(questionsArr);
 var intervalID = null;
+var timeOutID = null;
 var timeRemaining = 75;
 var questionIndex = 0;
 //object format for saving player score
@@ -194,11 +195,17 @@ function shuffle(array) {
 }
 //function to show feed back
 function showFeedback(ans){
+    if(timeOutID != null){
+        clearTimeout(timeOutID);
+        timeOutID = null;
+        feedBack.classList.add('hide');
+    }
     //show feedback area
     feedBack.classList.remove('hide');
     //set timout to hide feedback area
-    setTimeout(function(){
+    timeOutID = setTimeout(function(){
         feedBack.classList.add('hide');
+        timeOutID = null;
     },1500);
     //display if correct or wrong guess
     if(ans){
