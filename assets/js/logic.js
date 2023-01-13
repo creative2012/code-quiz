@@ -173,8 +173,10 @@ function rememberScores() {
     }
     toStorage.push(scoreSave);
     toStorage.sort(compare);
-
+    //save score
     localStorage.setItem('highScores', JSON.stringify(toStorage));
+    //redirect player to show highscores
+    window.location.replace('highscores.html');
 
 }
 
