@@ -10,6 +10,7 @@ const incorrectAns = new Audio('/assets/sfx/incorrect.wav');
 const correctAns = new Audio('/assets/sfx/correct.wav');
 const initials = document.querySelector('#initials');
 const finalScore = document.querySelector('#final-score');
+const feedBack = document.querySelector('#feedback');
 //randomiseQuestions;
 const questionShuff = shuffle(questionsArr);
 var intervalID = null;
@@ -128,9 +129,11 @@ function buttonHandler(button) {
         ///check if correct answer
         if (button.dataset.test == 1) {
             correctAns.play();
+            showFeedback(true);
             next();
         } else {
             incorrectAns.play();
+            showFeedback(false);
             reduceTime();
         }
     }
@@ -188,6 +191,21 @@ function shuffle(array) {
     }
 
     return array;
+}
+//function to show feed back
+function showFeedback(ans){
+    //show feedback area
+    feedBack.classList.remove('hide');
+    //set timout to hide feedback area
+    setTimeout(function(){
+        feedBack.classList.add('hide');
+    },1500);
+    //display if correct or wrong guess
+    if(ans){
+        feedBack.innerHTML = "Correct!";
+    } else{
+        feedBack.innerHTML = "Wrong!";
+    }
 }
 
 //get wrapper that will contain all buttons
