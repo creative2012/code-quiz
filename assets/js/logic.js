@@ -82,8 +82,10 @@ function runQuiz(q) {
 function checkAns(test){
     let check = questionShuff[questionIndex-1].correct;
     if(test == check.toString()){
+        correctAns.play();
         return true;
     } else {
+        incorrectAns.play();
         return false;
     }
 }
@@ -138,16 +140,8 @@ function buttonHandler(button) {
     }
     if (button.classList.contains('choice')) {
         ///check if correct answer
-        let check = checkAns(button.dataset.test);
-        let feedback = null;
-        if(check){
-            correctAns.play();
-            feedback = true;
-        } else {
-            incorrectAns.play();
-            feedback = false;
-            reduceTime();
-        }
+        let feedback = checkAns(button.dataset.test);
+        !feedback ? reduceTime() : null;
         showFeedback(feedback);
         next();
 
