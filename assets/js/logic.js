@@ -15,7 +15,7 @@ const feedBack = document.querySelector('#feedback');
 const questionShuff = shuffle(questionsArr);
 var intervalID = null;
 var timeOutID = null;
-var timeRemaining = 75;
+var timeRemaining = 0;
 var questionIndex = 0;
 //object format for saving player score
 var scoreSave = {
@@ -23,24 +23,12 @@ var scoreSave = {
     score: 0
 }
 
-//function to check answer
-function checkAns(test){
-    let check = questionShuff[questionIndex-1].correct;
-    if(test == check.toString()){
-        correctAns.play();
-        showFeedback(true);
-        next();
-    } else {
-        incorrectAns.play();
-        showFeedback(false);
-        reduceTime();
-    }
-}
 //function to set base state
 function int() {
     startScreen.classList.add('hide');
     questions.classList.remove('hide');
-    // timeRemaining = qArrLength * 10;
+    //add 15 seconds per question
+    timeRemaining = qArrLength * 10;
     timeIndicator.textContent = timeRemaining;
 }
 
@@ -90,6 +78,15 @@ function runQuiz(q) {
     questionIndex++;
 
 }
+//function to check answer
+function checkAns(test){
+    let check = questionShuff[questionIndex-1].correct;
+    if(test == check.toString()){
+        return true;
+    } else {
+        return false;
+    }
+}
 
 //function for wrong answer
 function reduceTime() {
@@ -102,7 +99,6 @@ function reduceTime() {
         timeRemaining = 1;
         timeIndicator.textContent = timeRemaining;
     }
-    next();
 
 }
 
@@ -142,7 +138,19 @@ function buttonHandler(button) {
     }
     if (button.classList.contains('choice')) {
         ///check if correct answer
-        checkAns(button.dataset.test);
+        let check = checkAns(button.dataset.test);
+        let feedback = null;
+        if(check){
+            correctAns.play();
+            feedback = true;
+        } else {
+            incorrectAns.play();
+            feedback = false;
+            reduceTime();
+        }
+        showFeedback(feedback);
+        next();
+
     }
     //save score
     if (button.id == "submit") {
