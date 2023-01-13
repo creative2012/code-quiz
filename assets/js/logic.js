@@ -17,12 +17,12 @@ const questionShuff = shuffle(questionsArr);
 function int(){
     startScreen.classList.add('hide');
     questions.classList.remove('hide');
-    timeRemaining = questionsArr.length * 10;
+    timeRemaining = qArrLength * 10;
     timeIndicator.textContent = timeRemaining;
     timer();
 }
 
-//function to start the timer and initiat the quiz
+//function to start the timer and initiate the quiz
 function timer(){
     setInterval(function (){
         //check if time remaining and count down the timer
@@ -40,40 +40,14 @@ function timer(){
     //start quiz
     runQuiz(questionIndex);
 }
-//function for wrong answer
-function reduceTime(){
-    if(timeRemaining > 6){
-        timeRemaining -= 5;
-        timeIndicator.textContent = timeRemaining;
-    } else {
-        timeRemaining = 1;
-        timeIndicator.textContent = timeRemaining;
-    }
-    next();
-
-}
-//function for correct answer
-function next(){
-    if(questionIndex < qArrLength && timeRemaining > 0){
-        runQuiz(questionIndex);
-    } else {
-        if(timeRemaining > 0){
-            clearInterval();
-            timeRemaining = 0;
-            timeIndicator.textContent = timeRemaining;
-        }
-        endGame();
-    }
-}
-
+//function to run the quiz
 function runQuiz(q){
 
     choices.innerHTML = '';
     questionTitle.innerHTML = questionShuff[q].question;
-    let qLength = questionShuff.length
     let qChoices = questionShuff[q].choices;
     
-    for (var i = 0; i < qLength; i++ ){
+    for (var i = 0; i < 4; i++ ){
         //create button
        let btn = document.createElement('button');
        //set the text and class
@@ -81,7 +55,7 @@ function runQuiz(q){
        btn.classList.add('choice');
        //check if this is the correct answer
        if(questionShuff[q].correct == i +1){
-        //if so add a data attribute with 1 for true or o for false
+        //if so add a data attribute with 1 for true or if not 0 for false
         btn.dataset.test = 1;
        } else {
         btn.dataset.test = 0;
@@ -94,7 +68,31 @@ function runQuiz(q){
     
 
 }
+//function for wrong answer
+function reduceTime(){
+    if(timeRemaining > 11){
+        timeRemaining -= 10;
+        timeIndicator.textContent = timeRemaining;
+    } else {
+        timeRemaining = 1;
+        timeIndicator.textContent = timeRemaining;
+    }
+    next();
 
+}
+//function to move to next question
+function next(){
+    if(questionIndex < qArrLength && timeRemaining > 0){
+        runQuiz(questionIndex);
+    } else {
+        if(timeRemaining > 0){
+            clearInterval();
+            timeRemaining = 0;
+            timeIndicator.textContent = timeRemaining;
+        }
+        endGame();
+    }
+}
 //function to end the game
 function endGame(){
 

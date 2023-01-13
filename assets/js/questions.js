@@ -7,6 +7,7 @@ const questionsArr = [
             'ans3',
             "ans4"
         ],
+        //human readable correct choice - actuall would be (correct -1) 
         correct: 2
     },
     {
