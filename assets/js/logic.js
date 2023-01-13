@@ -21,8 +21,6 @@ var scoreSave = {
     score: 0
 }
 
-
-
 //function to set base state
 function int() {
     startScreen.classList.add('hide');
@@ -32,7 +30,7 @@ function int() {
     timer();
 }
 
-//function to start the timer and initiate the quiz
+//function to start the timer and run the quiz
 function timer() {
     intervalID = setInterval(function () {
         //check if time remaining and count down the timer
@@ -50,6 +48,7 @@ function timer() {
     //start quiz
     runQuiz(questionIndex);
 }
+
 //function to run the quiz
 function runQuiz(q) {
 
@@ -76,13 +75,15 @@ function runQuiz(q) {
     }
     questionIndex++;
 
-
 }
+
 //function for wrong answer
 function reduceTime() {
+    //if there are seconds to remove (+1 second to all for lag)
     if (timeRemaining > 11) {
         timeRemaining -= 10;
         timeIndicator.textContent = timeRemaining;
+        //if not set timer to 1 second(to account for lag) so the game ends
     } else {
         timeRemaining = 1;
         timeIndicator.textContent = timeRemaining;
@@ -90,17 +91,21 @@ function reduceTime() {
     next();
 
 }
+
 //function to move to next question
 function next() {
+    //if more questions available
     if (questionIndex < qArrLength && timeRemaining > 0) {
         runQuiz(questionIndex);
     } else {
+        //if not end game
         if (timeRemaining > 0) {
             clearInterval(intervalID);
         }
         endGame();
     }
 }
+
 //function to end the game
 function endGame() {
 
@@ -109,8 +114,10 @@ function endGame() {
     finalScore.innerHTML = timeRemaining;
 
 }
+
 //function to handle button clicks
 function buttonHandler(button) {
+    //start quiz
     if (button.id == "start") {
         int();
     }
@@ -124,18 +131,19 @@ function buttonHandler(button) {
             reduceTime();
         }
     }
+    //save score
     if (button.id == "submit") {
         rememberScores();
     }
 
-
 }
+
 //function to save score to localStorage
 function rememberScores() {
     //save inital and score
-    scoreSave.inital = initials.value;
+    scoreSave.inital = initials.value.toUpperCase(); //ADD VALIDATION
     scoreSave.score = timeRemaining;
-    var toStorage = [];
+    let toStorage = [];
     //check if old scores in local storage
     let data = JSON.parse(localStorage.getItem('highScores'));
     if (data != null) {
@@ -149,6 +157,7 @@ function rememberScores() {
     localStorage.setItem('highScores', JSON.stringify(toStorage));
 
 }
+
 //function to sort scores into high score order
 function compare(a, b) {
     if (a.score > b.score) {
@@ -159,13 +168,13 @@ function compare(a, b) {
     }
     return 0;
 }
+
 //function to shuffle questions
 function shuffle(array) {
     let currentIndex = array.length, randomIndex;
 
     // While remaining items
     while (currentIndex != 0) {
-
         // Pick a remaining item.
         randomIndex = Math.floor(Math.random() * currentIndex);
         currentIndex--;
