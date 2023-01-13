@@ -2,12 +2,12 @@ const questionsArr = [
     {
         question: 'Javascript is an _______ language?',
         choices: [
-            'Object-Oriented',
-            'Object-Based',
-            'Procedural',
-            "None of the above"
+            'Object-Oriented', //1
+            'Object-Based', //2
+            'Procedural', //3
+            "None of the above" //4
         ],
-        //human readable correct choice - actuall would be (correct -1) 
+        //human readable correct choice - actual in logic would be (correct -1) 
         correct: 1
     },
     {
@@ -43,12 +43,12 @@ const questionsArr = [
     {
         question: 'Which of the following methods can be used to display data in some form using Javascript?',
         choices: [
-            'Thorws an error',
-            'Ignores the statements',
-            'Gives a warning',
-            "None of the above"
+            'document.write()',
+            'console.log()',
+            'window.alert()',
+            "All of the above"
         ],
-        correct: 2
+        correct: 4
     },
     {
         question: 'How can a datatype be declared to be a constant type?',
