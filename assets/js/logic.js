@@ -161,7 +161,7 @@ function endGame() {
 //function to save score to localStorage
 function rememberScores() {
     //save inital and score
-    scoreSave.inital = initials.value.toUpperCase(); //ADD VALIDATION
+    scoreSave.inital = initials.value.toUpperCase();
     scoreSave.score = timeRemaining;
     let toStorage = [];
     //check if old scores in local storage
