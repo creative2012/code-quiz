@@ -74,6 +74,15 @@ li:nth-child(odd) {
   left: 10px;
 }
 
+#highscores span{
+  float:right;
+}
+#highscores div{
+  padding-left: 25px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
 .feedback {
   font-style: italic;
   font-size: 120%;
