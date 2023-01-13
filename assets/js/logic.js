@@ -16,6 +16,7 @@ var intervalID = null;
 
 var timeRemaining = 75;
 var questionIndex = 0;
+//object format for saving player score
 var scoreSave = {
     inital: '',
     score: 0
@@ -27,10 +28,9 @@ function int() {
     questions.classList.remove('hide');
     // timeRemaining = qArrLength * 10;
     timeIndicator.textContent = timeRemaining;
-    timer();
 }
 
-//function to start the timer and run the quiz
+//function to start the timer
 function timer() {
     intervalID = setInterval(function () {
         //check if time remaining and count down the timer
@@ -45,8 +45,6 @@ function timer() {
 
     }, 1000);
 
-    //start quiz
-    runQuiz(questionIndex);
 }
 
 //function to run the quiz
@@ -119,7 +117,12 @@ function endGame() {
 function buttonHandler(button) {
     //start quiz
     if (button.id == "start") {
+        //initalise the game
         int();
+        //setTimer
+        timer();
+        //start quiz
+        runQuiz(questionIndex);
     }
     if (button.classList.contains('choice')) {
         ///check if correct answer
