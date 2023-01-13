@@ -23,8 +23,26 @@ var scoreSave = {
     score: 0
 }
 
+//function to shuffle questions
+function shuffle(array) {
+    let currentIndex = array.length, randomIndex;
+
+    // While remaining items
+    while (currentIndex != 0) {
+        // Pick a remaining item.
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+
+        // And swap it with the current item.
+        [array[currentIndex], array[randomIndex]] = [
+            array[randomIndex], array[currentIndex]];
+    }
+
+    return array;
+}
+
 //function to set base state
-function int() {
+function init() {
     startScreen.classList.add('hide');
     questions.classList.remove('hide');
     //add 15 seconds per question
@@ -84,6 +102,25 @@ function checkAns(test) {
     }
 }
 
+//function to show feed back
+function showFeedback(ans) {
+    if (timeOutID != null) {
+        clearTimeout(timeOutID);
+        timeOutID = null;
+        feedBack.classList.add('hide');
+    }
+    //show feedback area
+    feedBack.classList.remove('hide');
+    //set timout to hide feedback area
+    timeOutID = setTimeout(function () {
+        feedBack.classList.add('hide');
+        timeOutID = null;
+    }, 1500);
+    //display if correct or wrong guess
+    feedBack.innerHTML  = ans ? "Correct!" : "Wrong!";
+
+}
+
 //function for wrong answer
 function reduceTime() {
     //if there are seconds to remove (+1 second to all for lag)
@@ -115,36 +152,9 @@ function next() {
 
 //function to end the game
 function endGame() {
-
     questions.classList.add('hide');
     endScreen.classList.remove('hide');
     finalScore.innerHTML = timeRemaining;
-
-}
-
-//function to handle button clicks
-function buttonHandler(button) {
-    //start quiz
-    if (button.id == "start") {
-        //initalise the game
-        int();
-        //setTimer
-        timer();
-        //start quiz
-        runQuiz();
-    }
-    if (button.classList.contains('choice')) {
-        ///check if correct answer
-        let feedback = checkAns(button.dataset.test);
-        !feedback ? reduceTime() : null;
-        showFeedback(feedback);
-        next();
-
-    }
-    //save score
-    if (button.id == "submit") {
-        rememberScores();
-    }
 
 }
 
@@ -179,44 +189,30 @@ function compare(a, b) {
     return 0;
 }
 
-//function to shuffle questions
-function shuffle(array) {
-    let currentIndex = array.length, randomIndex;
+//function to handle button clicks
+function buttonHandler(button) {
+    //start quiz
+    if (button.id == "start") {
+        //initalise the game
+        init();
+        //setTimer
+        timer();
+        //start quiz
+        runQuiz();
+    }
+    if (button.classList.contains('choice')) {
+        ///check if correct answer
+        let feedback = checkAns(button.dataset.test);
+        if(!feedback) reduceTime();
+        showFeedback(feedback);
+        next();
 
-    // While remaining items
-    while (currentIndex != 0) {
-        // Pick a remaining item.
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex--;
-
-        // And swap it with the current item.
-        [array[currentIndex], array[randomIndex]] = [
-            array[randomIndex], array[currentIndex]];
+    }
+    //save score
+    if (button.id == "submit") {
+        rememberScores();
     }
 
-    return array;
-}
-
-//function to show feed back
-function showFeedback(ans) {
-    if (timeOutID != null) {
-        clearTimeout(timeOutID);
-        timeOutID = null;
-        feedBack.classList.add('hide');
-    }
-    //show feedback area
-    feedBack.classList.remove('hide');
-    //set timout to hide feedback area
-    timeOutID = setTimeout(function () {
-        feedBack.classList.add('hide');
-        timeOutID = null;
-    }, 1500);
-    //display if correct or wrong guess
-    if (ans) {
-        feedBack.innerHTML = "Correct!";
-    } else {
-        feedBack.innerHTML = "Wrong!";
-    }
 }
 
 //get wrapper that will contain all buttons
