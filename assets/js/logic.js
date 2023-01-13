@@ -45,7 +45,7 @@ function shuffle(array) {
 function init() {
     startScreen.classList.add('hide');
     questions.classList.remove('hide');
-    //add 15 seconds per question
+    //add 10 seconds per question
     timeRemaining = qArrLength * 10;
     timeIndicator.textContent = timeRemaining;
 }
