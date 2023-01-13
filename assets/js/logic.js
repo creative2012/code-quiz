@@ -50,11 +50,11 @@ function timer() {
 }
 
 //function to run the quiz
-function runQuiz(q) {
+function runQuiz() {
 
     choices.innerHTML = '';
-    questionTitle.innerHTML = questionShuff[q].question;
-    let qChoices = questionShuff[q].choices;
+    questionTitle.innerHTML = questionShuff[questionIndex].question;
+    let qChoices = questionShuff[questionIndex].choices;
     var choiceLetters = ['A. ','B. ','C. ','D. '];
 
     for (var i = 0; i < 4; i++) {
@@ -75,12 +75,11 @@ function runQuiz(q) {
         choices.appendChild(btn);
 
     }
-    questionIndex++;
 
 }
 //function to check answer
 function checkAns(test){
-    let check = questionShuff[questionIndex-1].correct;
+    let check = questionShuff[questionIndex].correct;
     if(test == check.toString()){
         correctAns.play();
         return true;
@@ -107,8 +106,9 @@ function reduceTime() {
 //function to move to next question
 function next() {
     //if more questions available
-    if (questionIndex < qArrLength && timeRemaining > 0) {
-        runQuiz(questionIndex);
+    if (questionIndex +1 < qArrLength && timeRemaining > 0) {
+        questionIndex++;
+        runQuiz();
     } else {
         //if not end game
         if (timeRemaining > 0) {
@@ -136,7 +136,7 @@ function buttonHandler(button) {
         //setTimer
         timer();
         //start quiz
-        runQuiz(questionIndex);
+        runQuiz();
     }
     if (button.classList.contains('choice')) {
         ///check if correct answer
