@@ -55,26 +55,27 @@ function runQuiz() {
     choices.innerHTML = '';
     questionTitle.innerHTML = questionShuff[questionIndex].question;
     let qChoices = questionShuff[questionIndex].choices;
-    var choiceLetters = ['A. ','B. ','C. ','D. '];
+    let choiceLetters = ['A. ', 'B. ', 'C. ', 'D. '];
 
     for (var i = 0; i < 4; i++) {
         //create button
         let btn = document.createElement('button');
         //set the text and class
-        btn.innerHTML = choiceLetters[i]+qChoices[i];
+        btn.innerHTML = choiceLetters[i] + qChoices[i];
         btn.classList.add('choice');
         //add data atribute for answer checking
-        btn.dataset.test = i+1;
+        btn.dataset.test = i + 1;
         //add to the page.
         choices.appendChild(btn);
 
     }
 
 }
+
 //function to check answer
-function checkAns(test){
+function checkAns(test) {
     let check = questionShuff[questionIndex].correct;
-    if(test == check.toString()){
+    if (test == check.toString()) {
         correctAns.play();
         return true;
     } else {
@@ -100,7 +101,7 @@ function reduceTime() {
 //function to move to next question
 function next() {
     //if more questions available
-    if (questionIndex +1 < qArrLength && timeRemaining > 0) {
+    if (questionIndex + 1 < qArrLength && timeRemaining > 0) {
         questionIndex++;
         runQuiz();
     } else {
@@ -195,9 +196,10 @@ function shuffle(array) {
 
     return array;
 }
+
 //function to show feed back
-function showFeedback(ans){
-    if(timeOutID != null){
+function showFeedback(ans) {
+    if (timeOutID != null) {
         clearTimeout(timeOutID);
         timeOutID = null;
         feedBack.classList.add('hide');
@@ -205,14 +207,14 @@ function showFeedback(ans){
     //show feedback area
     feedBack.classList.remove('hide');
     //set timout to hide feedback area
-    timeOutID = setTimeout(function(){
+    timeOutID = setTimeout(function () {
         feedBack.classList.add('hide');
         timeOutID = null;
-    },1500);
+    }, 1500);
     //display if correct or wrong guess
-    if(ans){
+    if (ans) {
         feedBack.innerHTML = "Correct!";
-    } else{
+    } else {
         feedBack.innerHTML = "Wrong!";
     }
 }
