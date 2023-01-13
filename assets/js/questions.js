@@ -31,14 +31,34 @@ const questionsArr = [
         correct: 3
     },
     {
-        question: 'pon encountering empty statements, what does the Javascript Interpreter do?',
+        question: 'Upon encountering empty statements, what does the Javascript Interpreter do?',
         choices: [
-            'Thorws an erro',
+            'Thorws an error',
             'Ignores the statements',
             'Gives a warning',
             "None of the above"
         ],
         correct: 2
+    },
+    {
+        question: 'Which of the following methods can be used to display data in some form using Javascript?',
+        choices: [
+            'Thorws an error',
+            'Ignores the statements',
+            'Gives a warning',
+            "None of the above"
+        ],
+        correct: 2
+    },
+    {
+        question: 'How can a datatype be declared to be a constant type?',
+        choices: [
+            'Const',
+            'var',
+            'let',
+            "constant"
+        ],
+        correct: 1
     },
     
 ]

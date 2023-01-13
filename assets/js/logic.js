@@ -52,12 +52,13 @@ function runQuiz(q) {
     choices.innerHTML = '';
     questionTitle.innerHTML = questionShuff[q].question;
     let qChoices = questionShuff[q].choices;
+    var choiceLetters = ['A. ','B. ','C. ','D. '];
 
     for (var i = 0; i < 4; i++) {
         //create button
         let btn = document.createElement('button');
         //set the text and class
-        btn.innerHTML = qChoices[i];
+        btn.innerHTML = choiceLetters[i]+qChoices[i];
         btn.classList.add('choice');
         //check if this is the correct answer
         if (questionShuff[q].correct == i + 1) {
