@@ -36,10 +36,16 @@ function init() {
     //show questions
     startScreen.classList.add('hide');
     questions.classList.remove('hide');
+    resetAudio(startGame);
+    resetAudio(correctAns);
+    resetAudio(incorrectAns);
+    resetAudio(warningMusic);
+    resetAudio(gameComplete);
 }
 
 //function to start the timer
 function timer() {
+    
     intervalID = setInterval(function () {
         //check if time remaining and count down the timer
         
@@ -163,7 +169,6 @@ function rememberScores() {
 function buttonHandler(button) {
     //start quiz
     if (button.id == "start") {
-        startGame.play();
         //initalise the game
         init();
         //setTimer
