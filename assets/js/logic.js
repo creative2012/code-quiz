@@ -110,13 +110,13 @@ function showFeedback(ans) {
     if (timeOutID != null) {
         clearTimeout(timeOutID);
         timeOutID = null;
-        screenChange('feedbackH')
+        feedBack.classList.add('hide');
     }
     //show feedback area
-    screenChange('feedback')
+    feedBack.classList.remove('hide');
     //set timout to hide feedback area
     timeOutID = setTimeout(function () {
-        screenChange('feedbackH')
+        feedBack.classList.add('hide');
         timeOutID = null;
     }, 1500);
     //display if correct or wrong guess
@@ -168,12 +168,6 @@ function screenChange(state){
     if(state == "play"){
         startScreen.classList.add('hide');
         questions.classList.remove('hide');
-    }
-    if (state == "feedback"){
-        feedBack.classList.remove('hide');
-    }
-    if (state == "feedbackH"){
-        feedBack.classList.add('hide');
     }
     if (state == "endgame"){
         questions.classList.add('hide');
