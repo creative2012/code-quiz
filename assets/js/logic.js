@@ -173,24 +173,13 @@ function rememberScores() {
             toStorage.push(item);
         });
     }
+    //add new score
     toStorage.push(scoreSave);
-    toStorage.sort(compare);
     //save score
     localStorage.setItem('highScores', JSON.stringify(toStorage));
     //redirect player to show highscores
     window.location.replace('highscores.html');
 
-}
-
-//function to sort scores into high score order
-function compare(a, b) {
-    if (a.score > b.score) {
-        return -1;
-    }
-    if (a.score < b.score) {
-        return 1;
-    }
-    return 0;
 }
 
 //function to handle button clicks
