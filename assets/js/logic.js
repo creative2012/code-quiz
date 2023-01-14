@@ -57,11 +57,12 @@ function timer() {
         } else {
             //if not end the game
             clearInterval(intervalID);
+            intervalID = null;
             endGame();
         }
         if(timeRemaining > 8){
             startGame.play();
-        } else if (timeRemaining <= 8) {
+        } else if (timeRemaining <= 8 && intervalID != null) {
             startGame.pause();
             warningMusic.play();
             warning.classList.add('warning');
