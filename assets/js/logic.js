@@ -4,6 +4,7 @@ const endScreen = document.querySelector('#end-screen');
 const startBtn = document.querySelector('#start');
 const submitBtn = document.querySelector('#submit');
 const timeIndicator = document.querySelector('#time');
+const warning = document.querySelector('.timer');
 const incorrectAns = new Audio('/assets/sfx/incorrect.wav');
 const questionTitle = document.querySelector('#question-title');
 const choices = document.querySelector('#choices');
@@ -38,6 +39,7 @@ function init() {
 function timer() {
     intervalID = setInterval(function () {
         //check if time remaining and count down the timer
+        
         if (timeRemaining > 0) {
             timeRemaining--;
             timeIndicator.textContent = timeRemaining;
@@ -45,6 +47,9 @@ function timer() {
             //if not end the game
             clearInterval(intervalID);
             endGame();
+        }
+        if (timeRemaining <= 10){
+            warning.classList.add('warning');
         }
 
     }, 1000);
@@ -67,8 +72,6 @@ function checkAns(test) {
 function showFeedback(ans) {
     if (timeOutID != null) {
         clearTimeout(timeOutID);
-        timeOutID = null;
-        feedBack.classList.add('hide');
     }
     //show feedback area
     feedBack.classList.remove('hide');

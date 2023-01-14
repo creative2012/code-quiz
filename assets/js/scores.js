@@ -17,7 +17,7 @@ let data = JSON.parse(localStorage.getItem('highScores'));
 if (data != null) {
     //add header
     let header =  document.createElement('div');
-    header.innerHTML = 'Name<span>Score</span>';
+    header.innerHTML = 'Initial<span>Score</span>';
     orderedList.appendChild(header);
     //sort
     data.sort(compare);
