@@ -53,10 +53,10 @@ function timer() {
             endGame();
         }
         if(timeRemaining > 8){
-            startGame.play();
+            playAudio(startGame);
         } else if (timeRemaining <= 8) {
             startGame.pause();
-            warningMusic.play();
+            playAudio(warningMusic);
             warning.classList.add('warning');
         }
 
@@ -129,7 +129,7 @@ function endGame() {
     warningMusic.pause();
     startGame.pause();
     setTimeout(function (){
-        gameComplete.play();
+        playAudio(gameComplete);
     }, 500);
     questions.classList.add('hide');
     endScreen.classList.remove('hide');
