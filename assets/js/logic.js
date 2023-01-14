@@ -50,7 +50,8 @@ function init() {
     //set time indicator
     timeIndicator.textContent = timeRemaining;
     //show questions
-    screenChange('play');
+    startScreen.classList.add('hide');
+    questions.classList.remove('hide');
 }
 
 //function to start the timer
@@ -157,22 +158,10 @@ function runQuiz() {
 
 //function to end the game
 function endGame() {
-    screenChange('endgame')
+    questions.classList.add('hide');
+    endScreen.classList.remove('hide');
     finalScore.innerHTML = timeRemaining;
 
-}
-
-//function to handle screen changes
-function screenChange(state){
-
-    if(state == "play"){
-        startScreen.classList.add('hide');
-        questions.classList.remove('hide');
-    }
-    if (state == "endgame"){
-        questions.classList.add('hide');
-        endScreen.classList.remove('hide');
-    }
 }
 
 //function to save score to localStorage
