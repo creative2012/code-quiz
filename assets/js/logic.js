@@ -158,12 +158,19 @@ function rememberScores() {
     window.location.replace('highscores.html');
 
 }
+//function to play audio
+function playAudio(player){
+    player.crossOrigin = "anonymous";
+        player.addEventListener("canplaythrough", function() {
+            player.play();
+        })
+}
 
 //function to handle button clicks
 function buttonHandler(button) {
     //start quiz
     if (button.id == "start") {
-        startGame.play();
+        playAudio(startGame);
         //initalise the game
         init();
         //setTimer
