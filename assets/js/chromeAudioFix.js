@@ -1,3 +1,4 @@
+//fix to allow playback in chrome browser
 function resetAudio(audio) {
     audio.muted = true;
     audio.pause();
