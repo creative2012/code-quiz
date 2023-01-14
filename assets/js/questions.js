@@ -63,8 +63,6 @@ const questionsArr = [
     
 ]
 const qArrLength = questionsArr.length;
-const questionTitle = document.querySelector('#question-title');
-const choices = document.querySelector('#choices');
 var questionShuff = [];
 
 //function to shuffle questions
