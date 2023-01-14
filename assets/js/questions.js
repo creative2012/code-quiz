@@ -63,3 +63,47 @@ const questionsArr = [
     
 ]
 const qArrLength = questionsArr.length;
+const questionTitle = document.querySelector('#question-title');
+const choices = document.querySelector('#choices');
+var questionShuff = [];
+
+//function to shuffle questions
+function shuffle(array) {
+    let currentIndex = array.length, randomIndex;
+
+    // While remaining items
+    while (currentIndex != 0) {
+        // Pick a remaining item.
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+
+        // And swap it with the current item.
+        [array[currentIndex], array[randomIndex]] = [
+            array[randomIndex], array[currentIndex]];
+    }
+
+    return array;
+}
+
+//function to show question
+function showQuestion() {
+
+    choices.innerHTML = '';
+    questionTitle.innerHTML = questionShuff[questionIndex].question;
+    let qChoices = questionShuff[questionIndex].choices;
+    let choiceLetters = ['A. ', 'B. ', 'C. ', 'D. '];
+
+    for (var i = 0; i < 4; i++) {
+        //create button
+        let btn = document.createElement('button');
+        //set the text and class
+        btn.innerHTML = choiceLetters[i] + qChoices[i];
+        btn.classList.add('choice');
+        //add data atribute for answer checking
+        btn.dataset.test = i + 1;
+        //add to the page.
+        choices.appendChild(btn);
+
+    }
+
+}

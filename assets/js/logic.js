@@ -3,16 +3,12 @@ const questions = document.querySelector('#questions');
 const endScreen = document.querySelector('#end-screen');
 const startBtn = document.querySelector('#start');
 const submitBtn = document.querySelector('#submit');
-const questionTitle = document.querySelector('#question-title');
-const choices = document.querySelector('#choices');
 const timeIndicator = document.querySelector('#time');
 const incorrectAns = new Audio('/assets/sfx/incorrect.wav');
 const correctAns = new Audio('/assets/sfx/correct.wav');
 const initials = document.querySelector('#initials');
 const finalScore = document.querySelector('#final-score');
 const feedBack = document.querySelector('#feedback');
-//randomiseQuestions;
-var questionShuff = [];
 var intervalID = null;
 var timeOutID = null;
 var timeRemaining = 0;
@@ -21,24 +17,6 @@ var questionIndex = 0;
 var scoreSave = {
     inital: '',
     score: 0
-}
-
-//function to shuffle questions
-function shuffle(array) {
-    let currentIndex = array.length, randomIndex;
-
-    // While remaining items
-    while (currentIndex != 0) {
-        // Pick a remaining item.
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex--;
-
-        // And swap it with the current item.
-        [array[currentIndex], array[randomIndex]] = [
-            array[randomIndex], array[currentIndex]];
-    }
-
-    return array;
 }
 
 //function to set base state
@@ -68,29 +46,6 @@ function timer() {
         }
 
     }, 1000);
-
-}
-
-//function to show question
-function showQuestion() {
-
-    choices.innerHTML = '';
-    questionTitle.innerHTML = questionShuff[questionIndex].question;
-    let qChoices = questionShuff[questionIndex].choices;
-    let choiceLetters = ['A. ', 'B. ', 'C. ', 'D. '];
-
-    for (var i = 0; i < 4; i++) {
-        //create button
-        let btn = document.createElement('button');
-        //set the text and class
-        btn.innerHTML = choiceLetters[i] + qChoices[i];
-        btn.classList.add('choice');
-        //add data atribute for answer checking
-        btn.dataset.test = i + 1;
-        //add to the page.
-        choices.appendChild(btn);
-
-    }
 
 }
 
