@@ -53,10 +53,10 @@ function timer() {
             endGame();
         }
         if(timeRemaining > 8){
-            playAudio(startGame);
+            startGame.play();
         } else if (timeRemaining <= 8) {
             startGame.pause();
-            playAudio(warningMusic);
+            warningMusic.play();
             warning.classList.add('warning');
         }
 
@@ -68,10 +68,10 @@ function timer() {
 function checkAns(test) {
     let check = questionShuff[questionIndex].correct;
     if (test == check.toString()) {
-        playAudio(correctAns);
+        correctAns.play();
         return true;
     } else {
-        playAudio(incorrectAns);
+        incorrectAns.play();
         return false;
     }
 }
@@ -129,7 +129,7 @@ function endGame() {
     warningMusic.pause();
     startGame.pause();
     setTimeout(function (){
-        playAudio(gameComplete);
+        gameComplete.play();
     }, 500);
     questions.classList.add('hide');
     endScreen.classList.remove('hide');
@@ -158,19 +158,12 @@ function rememberScores() {
     window.location.replace('highscores.html');
 
 }
-//function to play audio
-function playAudio(player){
-    player.crossOrigin = "anonymous";
-        player.addEventListener("canplaythrough", function() {
-            player.play();
-        })
-}
 
 //function to handle button clicks
 function buttonHandler(button) {
     //start quiz
     if (button.id == "start") {
-        playAudio(startGame);
+        startGame.play();
         //initalise the game
         init();
         //setTimer
