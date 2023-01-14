@@ -1,5 +1,5 @@
 const orderedList = document.querySelector('#highscores');
-const congrats = new Audio('/assets/sfx/highScore.wav');
+const congrats = document.querySelector('#highscore');
 congrats.play();
 //function to sort scores into high score order
 function compare(a, b) {
