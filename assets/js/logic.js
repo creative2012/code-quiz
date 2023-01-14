@@ -67,8 +67,8 @@ function timer() {
 
 }
 
-//function to run the quiz
-function runQuiz() {
+//function to show question
+function showQuestion() {
 
     choices.innerHTML = '';
     questionTitle.innerHTML = questionShuff[questionIndex].question;
@@ -137,12 +137,12 @@ function reduceTime() {
 
 }
 
-//function to move to next question
-function next() {
+//function to move run Quiz
+function runQuiz() {
     //if more questions available
     if (questionIndex + 1 < qArrLength && timeRemaining > 0) {
         questionIndex++;
-        runQuiz();
+        showQuestion();
     } else {
         //if not end game
         if (timeRemaining > 0) {
@@ -191,14 +191,14 @@ function buttonHandler(button) {
         //setTimer
         timer();
         //start quiz
-        runQuiz();
+        showQuestion();
     }
     if (button.classList.contains('choice')) {
         ///check if correct answer
         let feedback = checkAns(button.dataset.test);
         if(!feedback) reduceTime();
         showFeedback(feedback);
-        next();
+        runQuiz();
 
     }
     //save score
