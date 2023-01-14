@@ -53,7 +53,7 @@ const questionsArr = [
     {
         question: 'How can a datatype be declared to be a constant type?',
         choices: [
-            'Const',
+            'const',
             'var',
             'let',
             "constant"
