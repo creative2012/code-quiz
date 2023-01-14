@@ -68,10 +68,10 @@ function timer() {
 function checkAns(test) {
     let check = questionShuff[questionIndex].correct;
     if (test == check.toString()) {
-        correctAns.play();
+        playAudio(correctAns);
         return true;
     } else {
-        incorrectAns.play();
+        playAudio(incorrectAns);
         return false;
     }
 }
