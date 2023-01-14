@@ -12,7 +12,7 @@ const initials = document.querySelector('#initials');
 const finalScore = document.querySelector('#final-score');
 const feedBack = document.querySelector('#feedback');
 //randomiseQuestions;
-const questionShuff = shuffle(questionsArr);
+var questionShuff = [];
 var intervalID = null;
 var timeOutID = null;
 var timeRemaining = 0;
@@ -43,11 +43,14 @@ function shuffle(array) {
 
 //function to set base state
 function init() {
-    startScreen.classList.add('hide');
-    questions.classList.remove('hide');
+    //shuffle questons
+    questionShuff = shuffle(questionsArr);
     //add 10 seconds per question
     timeRemaining = qArrLength * 10;
+    //set time indicator
     timeIndicator.textContent = timeRemaining;
+    //show questions
+    screenChange('play');
 }
 
 //function to start the timer
@@ -107,13 +110,13 @@ function showFeedback(ans) {
     if (timeOutID != null) {
         clearTimeout(timeOutID);
         timeOutID = null;
-        feedBack.classList.add('hide');
+        screenChange('feedbackH')
     }
     //show feedback area
-    feedBack.classList.remove('hide');
+    screenChange('feedback')
     //set timout to hide feedback area
     timeOutID = setTimeout(function () {
-        feedBack.classList.add('hide');
+        screenChange('feedbackH')
         timeOutID = null;
     }, 1500);
     //display if correct or wrong guess
@@ -154,10 +157,28 @@ function runQuiz() {
 
 //function to end the game
 function endGame() {
-    questions.classList.add('hide');
-    endScreen.classList.remove('hide');
+    screenChange('endgame')
     finalScore.innerHTML = timeRemaining;
 
+}
+
+//function to handle screen changes
+function screenChange(state){
+
+    if(state == "play"){
+        startScreen.classList.add('hide');
+        questions.classList.remove('hide');
+    }
+    if (state == "feedback"){
+        feedBack.classList.remove('hide');
+    }
+    if (state == "feedbackH"){
+        feedBack.classList.add('hide');
+    }
+    if (state == "endgame"){
+        questions.classList.add('hide');
+        endScreen.classList.remove('hide');
+    }
 }
 
 //function to save score to localStorage
