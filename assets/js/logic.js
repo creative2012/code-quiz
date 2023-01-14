@@ -36,6 +36,7 @@ function init() {
     //show questions
     startScreen.classList.add('hide');
     questions.classList.remove('hide');
+    //fix audio play back in chrome
     resetAudio(startGame);
     resetAudio(correctAns);
     resetAudio(incorrectAns);

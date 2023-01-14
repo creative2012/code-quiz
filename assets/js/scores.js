@@ -1,5 +1,7 @@
 const orderedList = document.querySelector('#highscores');
 const congrats = document.querySelector('#highscore');
+//fix audio play back in chrome
+resetAudio(congrats);
 congrats.play();
 //function to sort scores into high score order
 function compare(a, b) {
