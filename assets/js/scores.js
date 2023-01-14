@@ -1,5 +1,6 @@
 const orderedList = document.querySelector('#highscores');
-
+const congrats = new Audio('/assets/sfx/highScore.wav');
+congrats.play();
 //function to sort scores into high score order
 function compare(a, b) {
     if (a.score > b.score) {

@@ -5,10 +5,13 @@ const startBtn = document.querySelector('#start');
 const submitBtn = document.querySelector('#submit');
 const timeIndicator = document.querySelector('#time');
 const warning = document.querySelector('.timer');
-const incorrectAns = new Audio('/assets/sfx/incorrect.wav');
 const questionTitle = document.querySelector('#question-title');
 const choices = document.querySelector('#choices');
+const incorrectAns = new Audio('/assets/sfx/incorrect.wav');
 const correctAns = new Audio('/assets/sfx/correct.wav');
+const startGame = new Audio('/assets/sfx/music.wav');
+const warningMusic = new Audio('/assets/sfx/warningMusic.wav');
+const gameComplete = new Audio('/assets/sfx/gameComplete.wav');
 const initials = document.querySelector('#initials');
 const finalScore = document.querySelector('#final-score');
 const feedBack = document.querySelector('#feedback');
@@ -43,12 +46,17 @@ function timer() {
         if (timeRemaining > 0) {
             timeRemaining--;
             timeIndicator.textContent = timeRemaining;
+            
         } else {
             //if not end the game
             clearInterval(intervalID);
             endGame();
         }
-        if (timeRemaining <= 10){
+        if(timeRemaining > 8){
+            startGame.play();
+        } else if (timeRemaining <= 8) {
+            startGame.pause();
+            warningMusic.play();
             warning.classList.add('warning');
         }
 
@@ -118,6 +126,11 @@ function runQuiz() {
 
 //function to end the game
 function endGame() {
+    warningMusic.pause();
+    startGame.pause();
+    setTimeout(function (){
+        gameComplete.play();
+    }, 500);
     questions.classList.add('hide');
     endScreen.classList.remove('hide');
     finalScore.innerHTML = timeRemaining;
@@ -150,6 +163,7 @@ function rememberScores() {
 function buttonHandler(button) {
     //start quiz
     if (button.id == "start") {
+        startGame.play();
         //initalise the game
         init();
         //setTimer
