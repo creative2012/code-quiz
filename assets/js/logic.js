@@ -132,8 +132,9 @@ function runQuiz() {
 
 //function to end the game
 function endGame() {
-    warningMusic.pause();
-    startGame.pause();
+
+    !warningMusic.paused ? warningMusic.pause() : startGame.pause();
+    
     setTimeout(function (){
         gameComplete.play();
     }, 500);
